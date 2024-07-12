@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_flutter/config/routes/app_routes.dart';
+import 'package:route_flutter/features/screen/presentation/manager/products_cubit.dart';
 import 'package:route_flutter/features/screen/presentation/widgets/product_list.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/screen/presentation/pages/products_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -19,11 +22,13 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
-          return MaterialApp(
-              debugShowCheckedModeBanner: false,
-            initialRoute: AppRoutes.products,
-            onGenerateRoute: (settings) => Routes.onGenerate(settings)
-          );
+          return BlocProvider(create: (context) =>ProductsCubit(),
+              child : MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  initialRoute: AppRoutes.products,
+                  onGenerateRoute: (settings) => Routes.onGenerate(settings)
+              ));
+
         }
     );
   }

@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_flutter/core/utils/app_colors.dart';
 import 'package:route_flutter/core/utils/app_fonts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:route_flutter/features/screen/presentation/manager/products_cubit.dart';
 
 import '../../../../core/utils/app_strings.dart';
-class SearchWidget extends StatelessWidget {
+class SearchWidget extends StatefulWidget {
   const SearchWidget({super.key});
+
+  @override
+  State<SearchWidget> createState() => _SearchWidgetState();
+}
+
+class _SearchWidgetState extends State<SearchWidget> {
+ final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +33,10 @@ class SearchWidget extends StatelessWidget {
           ),
           width: 320.w,
           child: TextField(
+            onChanged: (text) {
+              context.read<ProductsCubit>().getData(text);
+            },
+            controller: textEditingController,
             decoration: InputDecoration(
               hintText:AppStrings.search,
             hintStyle: AppFonts.text,
