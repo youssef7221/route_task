@@ -39,7 +39,7 @@ class ProductCard extends StatelessWidget {
                 );
               },
               child: Image.asset(AppImages.heart,
-              height: 10.h,width: 10.w,)),
+              height: 50.h,width: 50.w,)),
           Column(
             children: [
               ClipRRect(
