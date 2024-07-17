@@ -42,20 +42,33 @@ class ProductsScreen extends StatelessWidget {
                       ],
                     ),
                   );
-                } else if (state is ProductsFail) {
+                }
+                else if (state is ProductsFail) {
                   return Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Center(
                             child: Text(
-                          AppStrings.error,
+                          context.read<ProductsCubit>().error??"",
                           style: AppFonts.price.copyWith(fontSize: 24),
                         )),
                       ],
                     ),
                   );
-                } else {
+                } else if (state is NoConnection)
+                  {
+                   return Expanded(child: Column(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Center(child: Image.asset(AppImages.noInternet,height: 250.h,width: 250.w,)),
+                       Center(child: Text(AppStrings.netWork,style: AppFonts.text.copyWith(
+                         fontSize: 18.sp
+                       ),),)
+                     ],
+                   ));
+                  }
+                  else {
                   return Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

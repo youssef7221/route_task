@@ -5,5 +5,7 @@ class AppImages {
 
   static const String star = 'assets/star.png';
 
+  static const String noInternet = 'assets/no internet.png';
+
   static const String heart = 'assets/heartLogo.png';
 }
